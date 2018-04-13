@@ -25,5 +25,11 @@
     "gulp-autoprefixer": "^5.0.0",
     "gulp-html-beautify": "^1.0.1",
     "gulp-less": "^4.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "node-spotify-api": "^1.0.7",
+    "request": "^2.85.0",
+    "twitter": "^1.7.1"
   }
 }
