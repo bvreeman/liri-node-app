@@ -4,6 +4,8 @@ const keys = require('./keys.js');
 const Spotify = require('node-spotify-api');
 const Twitter = require('twitter');
 const request = require('request');
+const fs = require('fs');
+
 
 // console.log(keys);
 
@@ -94,4 +96,13 @@ function movieThis() {
     value = 'Mr.+Nobody';
     getMovieInfo();
   }
+}
+
+
+function doWhatItSays() {
+  fs.readFile('bank.txt', 'utf8', function(err, data) {
+    if (err) {
+      return console.log(err);
+    }
+  });
 }
