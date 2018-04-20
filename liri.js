@@ -11,6 +11,7 @@ const twitter = new Twitter(keys.twitter);
 
 const action = process.argv[2];
 let value = process.argv[3];
+const actionPlusValue = `Query: ${action}, '${value}' \r\n`;
 
 // running a switch so the program knows which function to call
 // based on the second argument input by the user
@@ -33,6 +34,19 @@ switch (action) {
     break;
 }
 
+// Append to log.txt file
+function appendMyInfo() {
+  if (process.argv[3] === undefined) {
+    fs.appendFile('log.txt', `Query: ${action} \r\n`, function (err) {
+      if (err) throw err;
+    });
+  } else {
+    fs.appendFile('log.txt', actionPlusValue, function (err) {
+      if (err) throw err;
+    });
+  }
+}
+
 // Retrieve Tweets from my Twitter Account
 
 function myTweets() {
@@ -46,6 +60,7 @@ function myTweets() {
 
       // Shows me when the last 20 Tweets were created
       console.log(tweets[i].created_at);
+      appendMyInfo();
     }
   });
 }
@@ -71,6 +86,7 @@ function spotifyThisSong() {
         console.log(`Song: ${response.tracks.items[0].name}`);
         console.log(`Preview URL: ${response.tracks.items[0].preview_url}`);
         console.log(`Album: ${response.tracks.items[0].album.name}`);
+        appendMyInfo();
       }
     });
 }
@@ -94,6 +110,7 @@ function getMovieInfo() {
       console.log(`Language: ${JSON.parse(body).Language}`);
       console.log(`Plot: ${JSON.parse(body).Plot}`);
       console.log(`Actors: ${JSON.parse(body).Rated}`);
+      appendMyInfo();
     }
   });
 }
