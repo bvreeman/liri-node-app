@@ -52,14 +52,13 @@ function appendMyInfo() {
 function myTweets() {
   twitter.get('statuses/user_timeline', function(error, tweets) {
     if (error) throw error;
-
     // Ran a loop in order to get the last 20 Tweets
-    for (i = 0; i < 20; i++) {
+    for (let i = 0; i < 20; i++) {
       // Shows me the text from the last 20 Tweets
-      console.log(tweets[i].text);
-
+      console.log(`Tweet #${[i + 1]}: ${tweets[i].text}`);
       // Shows me when the last 20 Tweets were created
-      console.log(tweets[i].created_at);
+      console.log(`Date/Time of Tweet: ${tweets[i].created_at}`);
+      console.log('<----------------------------------------------->');
       appendMyInfo();
     }
   });
